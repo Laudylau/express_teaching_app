@@ -76,6 +76,22 @@ app.get('*', (req, res, next) => {
   res.send("Error 404: not found")
 })
 
+// any errors passed through the `next()` function
+// will be caught here
+app.use((errorPayload, req, res, next) => {
+  console.log(errorPayload)
+  
+  const error = errorPayload.error;
+  const context = errorPayload
+
+  // use error from postgres, or context, if available
+  const message = error.detail || context || 'Unknown error'
+
+  res.status(500)
+
+  res.send(message)
+})
+
 server.listen(port, (err) => {
   if (err) {
     console.log("Error starting server:", err)

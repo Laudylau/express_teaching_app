@@ -4,7 +4,8 @@
   "description": "app for teaching express and database basics",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --watch . --ignore ./views ./start"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,8 @@
   "dependencies": {
     "body-parser": "1.18.2",
     "express": "4.16.2",
+    "nodemon": "1.15.0",
+    "pg": "7.4.1",
     "pug": "2.0.0-rc.4"
   }
 }
