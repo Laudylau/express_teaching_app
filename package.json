@@ -1,0 +1,24 @@
+{
+  "name": "express_teaching_app",
+  "version": "1.0.0",
+  "description": "app for teaching express and database basics",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drigberg/express_teaching_app.git"
+  },
+  "author": "drigberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drigberg/express_teaching_app/issues"
+  },
+  "homepage": "https://github.com/drigberg/express_teaching_app#readme",
+  "dependencies": {
+    "body-parser": "1.18.2",
+    "express": "4.16.2",
+    "pug": "2.0.0-rc.4"
+  }
+}
