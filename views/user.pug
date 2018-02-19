@@ -1,0 +1,15 @@
+if user
+  h1=`${user.first_name} ${user.last_name}`
+  h2 Bubbles:
+  if bubbles
+    ul
+      each bubble in bubbles
+        li
+          p= bubble.id
+          p=`Diameter in mm: ${bubble.diameter_mm}`
+          p=`Color: ${bubble.color}`
+          p=`Popped: ${bubble.popped}`
+  else
+    h3 No bubbles yet
+else
+  h3 No user
