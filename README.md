@@ -18,6 +18,27 @@ And start it:
 docker-compose up
 ```
 
+When your containers are running, you can use `docker-compose exec app bash` to access the shell
+for your app. Do this now, and then run `node lib/db/init.js` to add the user table to your db.
+
+
+# Exercises
+
+Level 1
+- Create a new table and set of routes, like with users
+  - Ex: /api/puppies
+- Fill in the missing queries for the api/user routes
+- Create a pug file to display a single user's information, and display it at `/user/:id` (NOT `/api/user/:id`)
+
+Level 2
+- Have the objects in your new table belong to users, and display them on the user page
+  - Ex: each bubble has a `user` field, which corresponds to the user who created it
+
+Level 3
+- Implement passport.js for authentication
+- Use a library like `bcrypt` or `crypto` to hash user passwords
+
+
 # Errors
 
 If postgres logs an error about a missing role, run this from your command line:

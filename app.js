@@ -15,8 +15,8 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const express = require('express')
 const pug = require('pug')
-// const passport = require('passport');
 
+const ui = require('./lib/ui')
 const api = require('./lib/api')
 const requestLogger = require('./lib/requestLogger')
 
@@ -38,12 +38,6 @@ app.set('view engine', 'pug');
 // can be served with res.render('landing')
 app.set('views', path.join(__dirname, 'views'));
 
-// all files in the ./assets directory will be served at
-// http://localhost:9001/assets, where they can be referenced
-// from our pug files
-// app.static('assets')
-
-
 // this line converts bodies encoded with the
 //format application/xxx-form-encoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -51,13 +45,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // this line converts bodies originally encoded as json objects
 app.use(bodyParser.json({}));
 
-
-// app.use(passport.passport.initialize());
-// app.use(passport.passport.session());
-
-// setup passport auth
-// passport.setup();
-
+// we put the request logger middleware before our routes so that
+// this information is logged before any errors might break the flow
 app.use(requestLogger);
 
 // landing page is at http://localhost:9001/
@@ -65,13 +54,17 @@ app.get('/', (req, res, next) => {
   res.render('landing')
 })
 
+// all routes declared in ui.js are prefixed with '/ui':
+// ex: http://localhost:9001/ui/users
+app.use('/ui', ui);
+
+
 // all routes declared in api.js are prefixed with '/api':
-// http://localhost:9001/api
+// ex: http://localhost:9001/api/users
 app.use('/api', api);
 
-//
+
 // Any url not matched by other routes is caught here
-//
 app.get('*', (req, res, next) => {
   res.send("Error 404: not found")
 })
@@ -88,14 +81,14 @@ app.use((errorPayload, req, res, next) => {
     const error = errorPayload.error;
     const context = errorPayload
 
-    // use error from postgres, or context, if available
+    // use context if error from postgres isn't available
+    // (postgres returns its error in .detail)
     message = error.detail || context
   }
 
   console.log(`Responding with: "${message}"`)
 
   res.status(500)
-
   res.send(message)
 })
 
