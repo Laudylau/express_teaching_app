@@ -29,8 +29,10 @@ Level 1
   - Ex: /api/puppies
 - Fill in the missing queries for the api/user routes
 - Create a pug file to display a single user's information, and display it at `/ui/user/:id`
-- Throw a meaningful error if fields are missing for post routes, or in the wrong format
-- Throw a meaningful error if req.params.id is not a number
+- Validation:
+  - Throw a meaningful error if fields are missing for post routes, or in the wrong format
+  - Throw a meaningful error if req.params.id is not a number
+- Create a collection in Postman for your api routes (https://www.getpostman.com/)
 
 Level 2
 - Have the objects in your new table belong to users, and display them on the user page
