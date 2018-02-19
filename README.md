@@ -46,7 +46,7 @@ Level 3
 
 If postgres logs an error about a missing role, run this from your command line:
 
-`docker-compose exec postgres psql -h localhost -U postgres -c "CREATE USER teaching_app WITH PASSWORD ;'ForPony';"`
+`docker-compose exec postgres psql -h localhost -U postgresql -c "CREATE USER teaching_app WITH PASSWORD ;'ForPony';"`
 
 
 # About the app
@@ -54,4 +54,9 @@ If postgres logs an error about a missing role, run this from your command line:
 `docker-compose.yml` tells Docker how to build the app.
 
 `DockerFile` tells Docker how to start the app.
+
+
+# Further reading
+
+Why Docker: https://blog.codeship.com/why-docker/
 
