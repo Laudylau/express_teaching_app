@@ -29,10 +29,13 @@ Level 1
   - Ex: /api/puppies
 - Fill in the missing queries for the api/user routes
 - Create a pug file to display a single user's information, and display it at `/ui/user/:id`
+- Throw a meaningful error if fields are missing for post routes, or in the wrong format
+- Throw a meaningful error if req.params.id is not a number
 
 Level 2
 - Have the objects in your new table belong to users, and display them on the user page
   - Ex: each puppy has a `user` field, which corresponds to the user who created it
+- Create ids using the `uuid` module, instead of relying on SQL's integer iteration
 
 Level 3
 - Implement passport.js for authentication

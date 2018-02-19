@@ -1,5 +1,9 @@
 h1 All Users
 
-ul
-  each user in users
-    li= user.first_name
+if users && users.length
+  ul
+    each user in users
+      li
+        p=`${user.first_name} ${user.last_name}`
+else
+  h3 No users to display
