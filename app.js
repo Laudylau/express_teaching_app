@@ -38,13 +38,13 @@ app.set('view engine', 'pug');
 // can be served with res.render('landing')
 app.set('views', path.join(__dirname, 'views'));
 
-// all files in the ./assets directory will be served at 
+// all files in the ./assets directory will be served at
 // http://localhost:9001/assets, where they can be referenced
 // from our pug files
 // app.static('assets')
 
 
-// this line converts bodies encoded with the 
+// this line converts bodies encoded with the
 //format application/xxx-form-encoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -79,13 +79,20 @@ app.get('*', (req, res, next) => {
 // any errors passed through the `next()` function
 // will be caught here
 app.use((errorPayload, req, res, next) => {
-  console.log(errorPayload)
-  
-  const error = errorPayload.error;
-  const context = errorPayload
+  console.log("\nError:", errorPayload)
 
-  // use error from postgres, or context, if available
-  const message = error.detail || context || 'Unknown error'
+  let message = 'Unknown error'
+
+  // use custom response if available
+  if (errorPayload && errorPayload.error) {
+    const error = errorPayload.error;
+    const context = errorPayload
+
+    // use error from postgres, or context, if available
+    message = error.detail || context
+  }
+
+  console.log(`Responding with: "${message}"`)
 
   res.status(500)
 

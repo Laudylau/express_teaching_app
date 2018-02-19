@@ -8,16 +8,16 @@ services:
     ports:
       - 9001:9001
     links:
-      - db
+      - postgresql
     depends_on:
-      - db
-  db:
+      - postgresql
+  postgresql:
     container_name: postgresql
     image: postgres:9.6.5-alpine
     environment:
       POSTGRES_DB: teaching_app
       POSTGRES_USER: app_user
-      POSTGRES_PASSWORD: ForPony
+      POSTGRES_PASSWORD: for_pony
     ports:
       - "5432:5432"
     volumes:
